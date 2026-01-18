@@ -1,0 +1,627 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ============================================
+   BLOOMBERG TERMINAL DESIGN SYSTEM
+   Professional Trading Platform
+   ============================================ */
+
+@theme {
+  /* === TERMINAL COLORS === */
+  /* Deep Blues (changed from black) */
+  --color-terminal-black: #0a1628;
+  --color-terminal-dark: #0d1b2a;
+  --color-terminal-panel: #1a2332;
+
+  /* Bloomberg Orange */
+  --color-bloomberg-orange: #FF6600;
+  --color-terminal-orange: #FFA500;
+
+  /* Trading Colors - Bright & Vivid */
+  --color-bull-green: #00FF00;
+  --color-bull-green-dark: #00CC00;
+  --color-bear-red: #FF0000;
+  --color-bear-red-dark: #CC0000;
+
+  /* Terminal UI */
+  --color-grid-lines: #333333;
+  --color-terminal-text: #00FF00;
+  --color-terminal-gray: #666666;
+  --color-terminal-white: #FFFFFF;
+
+  /* Institutional Blue */
+  --color-institutional-blue: #0088FF;
+  --color-institutional-blue-dark: #0066CC;
+
+  /* Cyberpunk Fintech Colors */
+  --color-cyberpunk-bg: #0b0e11;
+  --color-cyberpunk-black: #000000;
+  --color-neon-green: #00ff9d;
+  --color-neon-red: #ff0055;
+
+  /* Typography */
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+  --font-jetbrains: 'JetBrains Mono', monospace;
+
+  /* Legacy from premium design (for compatibility) */
+  --color-primary: #000000;
+  --color-secondary: #0a0a0a;
+  --color-accent: #FF6600;
+  --color-success: #00FF00;
+  --color-danger: #FF0000;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+body {
+  background-color: var(--color-terminal-black);
+  color: var(--color-terminal-white);
+  font-family: var(--font-sans);
+  @apply antialiased;
+}
+
+* {
+  @apply transition-colors duration-150;
+}
+
+/* ============================================
+   TERMINAL PANELS
+   ============================================ */
+
+.terminal-panel {
+  @apply bg-black border border-gray-800;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.terminal-panel-dark {
+  background-color: var(--color-terminal-dark);
+  border: 1px solid var(--color-grid-lines);
+}
+
+.terminal-header {
+  @apply bg-black border-b border-gray-800 px-4 py-2;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-bloomberg-orange);
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   TRADING COLORS
+   ============================================ */
+
+.price-up {
+  color: var(--color-bull-green) !important;
+}
+
+.price-down {
+  color: var(--color-bear-red) !important;
+}
+
+.bg-bull {
+  background-color: rgba(0, 255, 0, 0.1);
+  border-left: 3px solid var(--color-bull-green);
+}
+
+.bg-bear {
+  background-color: rgba(255, 0, 0, 0.1);
+  border-left: 3px solid var(--color-bear-red);
+}
+
+/* ============================================
+   BUTTONS - Terminal Style
+   ============================================ */
+
+.btn-terminal {
+  @apply bg-black border border-gray-700 text-white px-6 py-2 font-mono text-sm;
+  @apply hover:bg-gray-900 hover:border-bloomberg-orange transition-all;
+}
+
+.btn-buy {
+  @apply bg-black border-2 border-bull-green text-bull-green px-8 py-3 font-mono font-bold;
+  @apply hover:bg-bull-green hover:text-black transition-all;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.btn-sell {
+  @apply bg-black border-2 border-bear-red text-bear-red px-8 py-3 font-mono font-bold;
+  @apply hover:bg-bear-red hover:text-black transition-all;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.btn-bloomberg {
+  background-color: var(--color-bloomberg-orange);
+  color: #000;
+  @apply px-6 py-3 font-bold border-none;
+  @apply hover:brightness-110 transition-all;
+}
+
+/* ============================================
+   TERMINAL TEXT
+   ============================================ */
+
+.terminal-mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+}
+
+.terminal-value {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-bull-green);
+}
+
+.terminal-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-terminal-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ============================================
+   GRID & LAYOUT
+   ============================================ */
+
+.terminal-grid {
+  background-image:
+    linear-gradient(var(--color-grid-lines) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid-lines) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes flash-green {
+
+  0%,
+  100% {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: rgba(0, 255, 0, 0.2);
+  }
+}
+
+@keyframes flash-red {
+
+  0%,
+  100% {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: rgba(255, 0, 0, 0.2);
+  }
+}
+
+@keyframes terminal-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.flash-up {
+  animation: flash-green 0.3s ease-out;
+}
+
+.flash-down {
+  animation: flash-red 0.3s ease-out;
+}
+
+.terminal-pulse {
+  animation: terminal-pulse 2s ease-in-out infinite;
+}
+
+/* ============================================
+   TICKER & PRICE DISPLAY
+   ============================================ */
+
+.price-ticker {
+  @apply bg-black border border-gray-800 p-4;
+  font-family: var(--font-mono);
+}
+
+.price-large {
+  font-size: 48px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+
+/* ============================================
+   TRADING TABLE
+   ============================================ */
+
+.terminal-table {
+  @apply w-full bg-black;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.terminal-table th {
+  @apply bg-terminal-dark border-b border-gray-800 px-3 py-2 text-left;
+  color: var(--color-terminal-gray);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.terminal-table td {
+  @apply border-b border-gray-900 px-3 py-2;
+  color: var(--color-terminal-white);
+}
+
+.terminal-table tr:hover {
+  background-color: rgba(255, 102, 0, 0.05);
+}
+
+/* ============================================
+   INPUTS - Terminal Style
+   ============================================ */
+
+.input-terminal {
+  @apply bg-black border border-gray-700 text-white px-3 py-2;
+  font-family: var(--font-mono);
+  @apply focus:outline-none focus:border-bloomberg-orange;
+}
+
+.input-terminal:focus {
+  box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.2);
+}
+
+/* ============================================
+   STATUS INDICATORS
+   ============================================ */
+
+.status-live {
+  @apply inline-flex items-center gap-2;
+  color: var(--color-bull-green);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.status-live::before {
+  content: "●";
+  animation: terminal-pulse 1.5s ease-in-out infinite;
+}
+
+.status-offline {
+  @apply inline-flex items-center gap-2;
+  color: var(--color-bear-red);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.status-offline::before {
+  content: "●";
+}
+
+/* ============================================
+   SCROLLBAR - Terminal Style
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-black;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-grid-lines);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-bloomberg-orange);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.border-terminal {
+  border: 1px solid var(--color-grid-lines);
+}
+
+.text-bloomberg {
+  color: var(--color-bloomberg-orange);
+}
+
+.text-bull {
+  color: var(--color-bull-green);
+}
+
+.text-bear {
+  color: var(--color-bear-red);
+}
+
+.bg-terminal {
+  background-color: var(--color-terminal-black);
+}
+
+.bg-terminal-panel {
+  background-color: var(--color-terminal-panel);
+}
+
+/* ============================================
+   GLASSMORPHISM EFFECTS
+   ============================================ */
+
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glassmorphism-dark {
+  background: rgba(11, 14, 17, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   GLOW EFFECTS
+   ============================================ */
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(0, 255, 157, 0.4),
+              0 0 40px rgba(0, 255, 157, 0.2);
+}
+
+.glow-green:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 157, 0.6),
+              0 0 60px rgba(0, 255, 157, 0.3);
+}
+
+.glow-red {
+  box-shadow: 0 0 20px rgba(255, 0, 85, 0.4),
+              0 0 40px rgba(255, 0, 85, 0.2);
+}
+
+.glow-red:hover {
+  box-shadow: 0 0 30px rgba(255, 0, 85, 0.6),
+              0 0 60px rgba(255, 0, 85, 0.3);
+}
+
+/* ============================================
+   DEPTH BARS (Order Book)
+   ============================================ */
+
+.depth-bar-bid {
+  background: linear-gradient(to right, rgba(0, 255, 157, 0.2) 0%, transparent 100%);
+}
+
+.depth-bar-ask {
+  background: linear-gradient(to left, rgba(255, 0, 85, 0.2) 0%, transparent 100%);
+}
+
+/* ============================================
+   CYBERPUNK UTILITIES
+   ============================================ */
+
+.bg-cyberpunk {
+  background: linear-gradient(180deg, #0b0e11 0%, #000000 100%);
+}
+
+.text-neon-green {
+  color: var(--color-neon-green);
+}
+
+.text-neon-red {
+  color: var(--color-neon-red);
+}
+
+.border-neon-green {
+  border-color: var(--color-neon-green);
+}
+
+.border-neon-red {
+  border-color: var(--color-neon-red);
+}
+
+.font-jetbrains {
+  font-family: var(--font-jetbrains);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Mobile Small (< 640px) */
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
+  }
+
+  .price-large {
+    font-size: 24px;
+  }
+
+  .terminal-value {
+    font-size: 16px;
+  }
+
+  /* Navigation */
+  nav .flex {
+    flex-wrap: wrap;
+  }
+
+  /* Buttons - Minimum touch target */
+  button, .btn-terminal, .btn-buy, .btn-sell {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Grids */
+  .grid-cols-2, .grid-cols-3, .grid-cols-4, .grid-cols-5 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  /* Spacing */
+  .px-6 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .py-20 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* Text sizes */
+  .text-8xl {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+
+  .text-5xl {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .text-4xl {
+    font-size: 1.75rem;
+  }
+
+  .text-3xl {
+    font-size: 1.5rem;
+  }
+
+  .text-2xl {
+    font-size: 1.25rem;
+  }
+
+  /* Order Book */
+  .glassmorphism-dark {
+    padding: 1rem;
+  }
+
+  /* Tables */
+  .terminal-table {
+    font-size: 10px;
+  }
+
+  .terminal-table th,
+  .terminal-table td {
+    padding: 0.5rem;
+  }
+}
+
+/* Mobile Medium (640px - 768px) */
+@media (min-width: 640px) and (max-width: 768px) {
+  .price-large {
+    font-size: 28px;
+  }
+
+  .terminal-value {
+    font-size: 18px;
+  }
+
+  .text-8xl {
+    font-size: 3rem;
+  }
+
+  .text-5xl {
+    font-size: 2.5rem;
+  }
+
+  /* Grids - 2 columns on medium mobile */
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Tablet (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .price-large {
+    font-size: 32px;
+  }
+
+  .terminal-value {
+    font-size: 20px;
+  }
+
+  .text-8xl {
+    font-size: 4rem;
+  }
+
+  .text-5xl {
+    font-size: 3rem;
+  }
+
+  /* Grids - 2-3 columns on tablet */
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Utility classes for responsive design */
+.mobile-hidden {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .mobile-hidden {
+    display: block;
+  }
+}
+
+.desktop-hidden {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .desktop-hidden {
+    display: none;
+  }
+}
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 22, 40, 0.98);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Horizontal scroll for tables on mobile */
+@media (max-width: 768px) {
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
