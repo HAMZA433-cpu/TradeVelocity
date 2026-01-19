@@ -21,11 +21,25 @@ app = Flask(__name__)
 # CORS configuration for production
 # Autoriser les requêtes depuis le frontend Vercel
 frontend_url = os.getenv('FRONTEND_URL', 'http://localhost:5173')
-allowed_origins = [frontend_url, 'http://localhost:5173', 'http://localhost:3000']
 
+# Fonction pour vérifier si l'origine est autorisée
+def is_allowed_origin(origin):
+    allowed_origins = [
+        frontend_url,
+        'http://localhost:5173',
+        'http://localhost:3000',
+    ]
+    
+    # Autoriser tous les domaines vercel.app
+    if origin and origin.endswith('.vercel.app'):
+        return True
+    
+    return origin in allowed_origins
+
+# Configuration CORS avec fonction personnalisée
 CORS(app, 
-     resources={r"/api/*": {"origins": allowed_origins}, 
-                r"/auth/*": {"origins": allowed_origins}},
+     resources={r"/api/*": {"origins": is_allowed_origin}, 
+                r"/auth/*": {"origins": is_allowed_origin}},
      supports_credentials=True,
      allow_headers=["Content-Type", "Authorization"],
      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
